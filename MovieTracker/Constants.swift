@@ -14,6 +14,10 @@ enum Constants {
     static let searchString = "Search"
     static let downloadsString = "Downloads"
     static let playString = "Play"
+    static let trendingMovieString = "Trending Movies"
+    static let trendingTVString = "Trending TV"
+    static let topRatedMovieString = "Top Rated Movies"
+    static let topRatedTVString = "Top Rated TV"
 
     static let homeIconString = "house"
     static let upcomingIconString = "play.circle"
@@ -21,6 +25,8 @@ enum Constants {
     static let downloadsIconString = "arrow.down.to.line"
 
     static let testTitleURL = "https://image.tmdb.org/t/p/w600_and_h900_face/tN799oUR0f1gUKDYdMNrDaY7I51.jpg"
+    static let testTitleURL2 = "https://image.tmdb.org/t/p/w600_and_h900_face/4tTrW9dXCByS5wt2pXVWb58zNjz.jpg"
+    static let testTitleURL3 = "https://image.tmdb.org/t/p/w600_and_h900_face/uRxrNXQWkHoENm3nwVOZDYSCx2F.jpg"
 }
 
 extension Text {
