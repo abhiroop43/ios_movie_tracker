@@ -27,6 +27,16 @@ enum Constants {
     static let testTitleURL = "https://image.tmdb.org/t/p/w600_and_h900_face/tN799oUR0f1gUKDYdMNrDaY7I51.jpg"
     static let testTitleURL2 = "https://image.tmdb.org/t/p/w600_and_h900_face/4tTrW9dXCByS5wt2pXVWb58zNjz.jpg"
     static let testTitleURL3 = "https://image.tmdb.org/t/p/w600_and_h900_face/uRxrNXQWkHoENm3nwVOZDYSCx2F.jpg"
+    
+    static let posterURLStart = "https://image.tmdb.org/t/p/w600_and_h900_face"
+    
+    static func addPosterPath(to titles: inout[Title]) {
+        for index in titles.indices {
+            if let path = titles[index].posterPath {
+                titles[index].posterPath = Constants.posterURLStart + path
+            }
+        }
+    }
 }
 
 extension Text {
