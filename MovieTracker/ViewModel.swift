@@ -1,5 +1,5 @@
 //
-//  ViewModel.swift
+//  sourcecode.swift
 //  MovieTracker
 //
 //  Created by Abhiroop Santra on 14/09/2026.
@@ -15,22 +15,42 @@ class ViewModel {
         case success
         case failed(underlyingError: Error)
     }
-    
+
     private(set) var homeStatus: FetchStatus = .notStarted
-    
+
     private let dataFetcher = DataFetcher()
-    
+
     var trendingMovies: [Title] = []
-    
+    var trendingTV: [Title] = []
+    var topRatedMovies: [Title] = []
+    var topratedTV: [Title] = []
+    var heroTitle = Title.previewTitles[0]
+
     func getTitles() async {
         homeStatus = .fetching
-        
-        do {
-            trendingMovies = try await dataFetcher.fetchTitles(for: "movie")
+        if trendingMovies.isEmpty {
+            do {
+                async let tMovies = dataFetcher.fetchTitles(for: "movie", by: "trending")
+                async let tTV = dataFetcher.fetchTitles(for: "tv", by: "trending")
+                async let trMovies = dataFetcher.fetchTitles(for: "movie", by: "top_rated")
+                async let trTV = dataFetcher.fetchTitles(for: "tv", by: "top_rated")
+
+                trendingMovies = try await tMovies
+                trendingTV = try await tTV
+                topRatedMovies = try await trMovies
+                topratedTV = try await trTV
+                
+                if let title = trendingMovies.randomElement() {
+                    heroTitle = title
+                }
+
+                homeStatus = .success
+            } catch {
+                print(error)
+                homeStatus = .failed(underlyingError: error)
+            }
+        } else {
             homeStatus = .success
-        }catch {
-            print(error)
-            homeStatus = .failed(underlyingError: error)
         }
     }
 }

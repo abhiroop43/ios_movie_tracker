@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct HomeView: View {
-    var heroTestTitle = Constants.testTitleURL
+    
     let viewModel = ViewModel()
+    @State private var titleDetailPath = NavigationPath()
 
     var body: some View {
         GeometryReader { geo in
@@ -21,9 +22,10 @@ struct HomeView: View {
                     Text("Error: \(error.localizedDescription)")
                 case .fetching:
                     ProgressView()
+                        .frame(width: geo.size.width, height: geo.size.height)
                 case .success:
                     LazyVStack {
-                        AsyncImage(url: URL(string: heroTestTitle)) { image in
+                        AsyncImage(url: URL(string: viewModel.heroTitle.posterPath ?? "")) { image in
                             image
                                 .resizable()
                                 .scaledToFit()
@@ -50,9 +52,9 @@ struct HomeView: View {
                         }
                         
                         HorizontalListView(header: Constants.trendingMovieString, titles: viewModel.trendingMovies)
-                        //                    HorizontalListView(header: Constants.trendingTVString)
-                        //                    HorizontalListView(header: Constants.topRatedMovieString)
-                        //                    HorizontalListView(header: Constants.topRatedTVString)
+                        HorizontalListView(header: Constants.trendingTVString, titles: viewModel.trendingTV)
+                        HorizontalListView(header: Constants.topRatedMovieString, titles: viewModel.topRatedMovies)
+                        HorizontalListView(header: Constants.topRatedTVString, titles: viewModel.topratedTV)
                     }
                 }
 
