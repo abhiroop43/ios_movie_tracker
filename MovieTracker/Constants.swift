@@ -30,6 +30,8 @@ enum Constants {
     
     static let posterURLStart = "https://image.tmdb.org/t/p/w600_and_h900_face"
     
+    static let bundleId = "dev.abhiroopsantra.MovieTracker"
+    
     static func addPosterPath(to titles: inout[Title]) {
         for index in titles.indices {
             if let path = titles[index].posterPath {
@@ -37,6 +39,13 @@ enum Constants {
             }
         }
     }
+}
+
+enum YoutubeURLStrings: String {
+    case trailer = "trailer"
+    case queryShorten = "q"
+    case space = " "
+    case key = "key"
 }
 
 extension Text {
