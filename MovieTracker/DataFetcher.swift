@@ -13,7 +13,6 @@ struct DataFetcher {
     let youtubeSearchURL = APIConfig.shared?.youtubeSearchURL
     let youtubeAPIKey = APIConfig.shared?.youtubeAPIKey
 
-    /// https://api.themoviedb.org/3/movie/top_rated?api_key=
     func fetchTitles(for media: String, by type: String) async throws -> [Title] {
         let fetchTitlesURL = try buildURL(media: media, type: type)
         
@@ -55,8 +54,6 @@ struct DataFetcher {
     func fetchAndDecode<T: Decodable>(url: URL, type: T.Type) async throws -> T {
         let bundleID = Bundle.main.bundleIdentifier ?? Constants.bundleId
         
-//        let (data, urlResponse) = try await URLSession.shared.data(from: url)
-        
         var request = URLRequest(url: url)
         
         request.setValue(bundleID, forHTTPHeaderField: "X-Ios-Bundle-Identifier")
@@ -89,9 +86,9 @@ struct DataFetcher {
         var path: String
 
         if type == "trending" {
-            path = "/3/trending/\(media)/day"
-        } else if type == "top_rated" {
-            path = "/3/\(media)/top_rated"
+            path = "/3/\(type)/\(media)/day"
+        } else if type == "top_rated" || type == "upcoming" {
+            path = "/3/\(media)/\(type)"
         } else {
             throw NetworkError.urlBuildFailed
         }
