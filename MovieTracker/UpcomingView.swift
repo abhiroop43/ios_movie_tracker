@@ -21,9 +21,11 @@ struct UpcomingView: View {
                     ProgressView()
                         .frame(width: geometry.size.width, height: geometry.size.height)
                 case .success:
-                    VerticalListView(titles: viewModel.upcomingMovies)
+                    VerticalListView(titles: viewModel.upcomingMovies, canDelete: false)
                 case let .failed(underlyingError):
                     Text(underlyingError.localizedDescription)
+                        .errorMessage()
+                        .frame(width: geometry.size.width, height: geometry.size.height)
                 }
             }
             .task {

@@ -21,7 +21,9 @@ struct HomeView: View {
                     case .notStarted:
                         EmptyView()
                     case let .failed(error):
-                        Text("Error: \(error.localizedDescription)")
+                        Text(error.localizedDescription)
+                            .errorMessage()
+                            .frame(width: geo.size.width, height: geo.size.height)
                     case .fetching:
                         ProgressView()
                             .frame(width: geo.size.width, height: geo.size.height)
