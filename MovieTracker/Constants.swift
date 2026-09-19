@@ -18,11 +18,17 @@ enum Constants {
     static let trendingTVString = "Trending TV"
     static let topRatedMovieString = "Top Rated Movies"
     static let topRatedTVString = "Top Rated TV"
+    static let movieSearchString = "Movie Search"
+    static let tvSearchString = "TV Search"
+    static let moviePlaceholderString = "Search for a movie"
+    static let tvPlaceholderString = "Search for a TV Show"
 
     static let homeIconString = "house"
     static let upcomingIconString = "play.circle"
     static let searchIconString = "magnifyingglass"
     static let downloadsIconString = "arrow.down.to.line"
+    static let tvIconString = "tv"
+    static let movieIconString = "movieclapper"
 
     static let testTitleURL = "https://image.tmdb.org/t/p/w600_and_h900_face/tN799oUR0f1gUKDYdMNrDaY7I51.jpg"
     static let testTitleURL2 = "https://image.tmdb.org/t/p/w600_and_h900_face/4tTrW9dXCByS5wt2pXVWb58zNjz.jpg"
